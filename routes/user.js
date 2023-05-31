@@ -25,8 +25,8 @@ router.get("/:username", verify, (req, res, next) => {
   });
 });
 
-router.post("/create", verify, (req, res, next) => {
-  let bearer = req.userData;
+router.post("/create", (req, res, next) => {
+  // let bearer = req.userData;
   let user_id = req.body.user_id;
   db.query(
     "SELECT username FROM user WHERE username=?",
