@@ -1,5 +1,5 @@
+# REST Client for Visual Studio Code =========
 GET http://localhost:3000/auth
-
 
 ### ===========
 POST http://localhost:3000/auth
