@@ -1,6 +1,14 @@
 # REST Client for Visual Studio Code =========
 GET http://localhost:3000/auth
 
+### ============
+POST http://localhost:3000/user/create
+Content-Type: application/json
+
+{
+    "user_id" : "newuser"
+}
+
 ### ===========
 POST http://localhost:3000/auth
 Content-Type: application/json
@@ -12,18 +20,10 @@ Content-Type: application/json
 }
 
 ### ============
-GET http://localhost:3000/user/root
+GET http://localhost:3000/user/newuser
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiaGVsbG8iLCJ0b2tlbiI6ImU3ZWI5NjRjY2E1NjY3YWRjZDQ1NjZjNzg1ZjY0NTYxNWYyMDA2YWEiLCJsZXZlbCI6IjEiLCJpYXQiOjE2ODU1MDgyMDMsImV4cCI6MTY4NTUxMTgwM30.VgarqIrdWDz_paeZDyknDCClYbTIXmU1gYJ4CoyQP0Y
 
-### ============
-POST http://localhost:3000/user/create
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoicm9vdCIsInRva2VuIjoiNmRhYzkyMDhjMzNiNTFjYzk1MzhkMDI0OTA5ODQ2ODYyMDBhYjBjMSIsImlhdCI6MTY4NTUwNDIyOCwiZXhwIjoxNjg1NTA3ODI4fQ.GuryCeiHb4hzTHQ4GRpK1z2pF7ANqq5zeDC5YuU9iG4
-
-{
-    "user_id" : "newuser"
-}
 
 
 ### ============
