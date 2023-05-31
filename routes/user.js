@@ -26,45 +26,52 @@ router.get("/:username", verify, (req, res, next) => {
 });
 
 router.post("/create", verify, (req, res, next) => {
-  let user_id = req.body.user_id;
-  db.query(
-    "SELECT username FROM user WHERE username=?",
-    [user_id],
-    function (err, data) {
-      if (err) throw err;
-      if (data.length >= 1) {
-        return res.status(409).json({
-          message: "user_id exists",
-        });
-      } else {
-        let user_key = makekey(8);
-        bcrypt.hash(user_key, 10, (err, hash) => {
-          if (err) {
-            return res.status(500).json({
-              error: err,
-            });
-          } else {
-            const sha1 = crypto
-              .createHash("sha1")
-              .update(user_id + hash)
-              .digest("hex");
-            db.query(
-              "INSERT INTO user (username, password, token, ip) values (?, ?, ?, ?)",
-              [user_id, hash, sha1, "127.0.0.1"],
-              function (err, data) {
-                if (err) throw err;
-                res.status(201).json({
-                  user_id: user_id,
-                  user_key: user_key,
-                  token: sha1,
-                });
-              }
-            );
-          }
-        });
+  let bearer = req.userData;
+  if (bearer.level == "1") {
+    let user_id = req.body.user_id;
+    db.query(
+      "SELECT username FROM user WHERE username=?",
+      [user_id],
+      function (err, data) {
+        if (err) throw err;
+        if (data.length >= 1) {
+          return res.status(409).json({
+            message: "user_id exists",
+          });
+        } else {
+          let user_key = makekey(8);
+          bcrypt.hash(user_key, 10, (err, hash) => {
+            if (err) {
+              return res.status(500).json({
+                error: err,
+              });
+            } else {
+              const sha1 = crypto
+                .createHash("sha1")
+                .update(user_id + hash)
+                .digest("hex");
+              db.query(
+                "INSERT INTO user (username, password, token, ip) values (?, ?, ?, ?)",
+                [user_id, hash, sha1, "127.0.0.1"],
+                function (err, data) {
+                  if (err) throw err;
+                  res.status(201).json({
+                    user_id: user_id,
+                    user_key: user_key,
+                    token: sha1,
+                  });
+                }
+              );
+            }
+          });
+        }
       }
-    }
-  );
+    );
+  } else {
+    return res.status(401).json({
+      message: "Auth failed",
+    });
+  }
 });
 
 router.post("/reset", verify, (req, res, next) => {
@@ -109,6 +116,10 @@ router.post("/reset", verify, (req, res, next) => {
         }
       }
     );
+  } else {
+    return res.status(401).json({
+      message: "Auth failed",
+    });
   }
 });
 
