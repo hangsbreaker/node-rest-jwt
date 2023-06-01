@@ -4,7 +4,7 @@ const crypto = require("crypto");
 
 router.get("/", (req, res, next) => {
   // console.log(req.userData);
-  res.json({ message: "hello" });
+  res.json({ message: "Hello" });
 });
 
 router.get("/:username", verify, (req, res, next) => {
