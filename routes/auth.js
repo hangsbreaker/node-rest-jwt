@@ -1,6 +1,6 @@
 const { router, db } = require("../includes");
-const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const uri = "/auth";
 
 router.get(uri, (req, res, next) => {
