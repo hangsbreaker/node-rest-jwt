@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 
 router.get("/", (req, res, next) => {
   // console.log(req.ip);
-  res.json({ message: "hello" });
+  res.json({ message: "Hello" });
 });
 
 router.post("/", (req, res, next) => {
