@@ -1,4 +1,4 @@
-const { db, router } = require("../includes");
+const { router, db } = require("../includes");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
