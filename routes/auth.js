@@ -1,8 +1,6 @@
-const express = require("express");
+const { db, router } = require("../includes");
 const jwt = require("jsonwebtoken");
-const router = express.Router();
 const bcrypt = require("bcrypt");
-const db = require("../con");
 
 router.get("/", (req, res, next) => {
   // console.log(req.ip);

@@ -1,9 +1,6 @@
-const express = require("express");
-const router = express.Router();
+const { db, router, verify } = require("../includes");
 const bcrypt = require("bcrypt");
-const db = require("../con");
 const crypto = require("crypto");
-const verify = require("../verify");
 
 router.get("/", (req, res, next) => {
   // console.log(req.userData);
@@ -26,7 +23,6 @@ router.get("/:username", verify, (req, res, next) => {
 });
 
 router.post("/create", (req, res, next) => {
-  // let bearer = req.userData;
   let user_id = req.body.user_id;
   db.query(
     "SELECT username FROM user WHERE username=?",
