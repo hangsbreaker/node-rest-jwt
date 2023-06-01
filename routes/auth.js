@@ -1,13 +1,14 @@
 const { router, db } = require("../includes");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const uri = "/auth";
 
-router.get("/", (req, res, next) => {
+router.get(uri, (req, res, next) => {
   // console.log(req.ip);
   res.json({ message: "Hello" });
 });
 
-router.post("/", (req, res, next) => {
+router.post(uri, (req, res, next) => {
   // let user_id = db.escape(req.body.user_id);
   let user_id = req.body.user_id;
   db.query(
