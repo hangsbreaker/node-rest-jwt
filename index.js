@@ -19,8 +19,8 @@ app.get("/", (req, res) => {
 const userRoutes = require("./routes/user");
 app.use("/user", userRoutes);
 
-const userAuth = require("./routes/auth");
-app.use("/auth", userAuth);
+const authRoutes = require("./routes/auth");
+app.use("/auth", authRoutes);
 // end routes ========
 
 app.listen(port, () => {
