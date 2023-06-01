@@ -1,4 +1,4 @@
-const { db, router, verify } = require("../includes");
+const { router, verify, db } = require("../includes");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 
