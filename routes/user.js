@@ -1,13 +1,14 @@
 const { router, verify, db } = require("../includes");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
+const uri = "/user";
 
-router.get("/", (req, res, next) => {
+router.get(uri, (req, res, next) => {
   // console.log(req.userData);
   res.json({ message: "Hello" });
 });
 
-router.get("/:username", verify, (req, res, next) => {
+router.get(uri+"/:username", verify, (req, res, next) => {
   // console.log(req.userData);
   const sql =
     "SELECT username, token, ip, level FROM user WHERE username=" +
@@ -22,7 +23,7 @@ router.get("/:username", verify, (req, res, next) => {
   });
 });
 
-router.post("/create", (req, res, next) => {
+router.post(uri+"/create", (req, res, next) => {
   let user_id = req.body.user_id;
   db.query(
     "SELECT username FROM user WHERE username=?",
@@ -64,7 +65,7 @@ router.post("/create", (req, res, next) => {
   );
 });
 
-router.post("/reset", verify, (req, res, next) => {
+router.post(uri+"/reset", verify, (req, res, next) => {
   let bearer = req.userData;
   if (bearer.level == "1") {
     let user_id = req.body.user_id;
