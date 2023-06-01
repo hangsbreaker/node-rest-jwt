@@ -16,11 +16,10 @@ app.get("/", (req, res) => {
 });
 
 // routes ============
-const userRoutes = require("./routes/user");
-app.use("/user", userRoutes);
-
-const authRoutes = require("./routes/auth");
-app.use("/auth", authRoutes);
+var routePath = "./routes/";
+fs.readdirSync(routePath).forEach(function (file) {
+  app.use("/", require(routePath + "/" + file));
+});
 // end routes ========
 
 app.use((req, res, next) => {
